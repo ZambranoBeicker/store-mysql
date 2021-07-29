@@ -1,0 +1,28 @@
+.card {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: var(--shadow);
+  margin-top: 1rem;
+  padding: 1.5rem 0.5rem;
+}
+
+.card__title {
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.card__title h5 {
+  font-weight: lighter;
+}
+
+.card__buy {
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-top: 2rem;
+  border-top: 2px solid var(--bg-color);
+}

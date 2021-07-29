@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  padding: 0.5rem;
+  box-shadow: 1px 0px 8px lightgray;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__title h2 {
+  font-size: 1rem;
+}
+
+.header__search-bar {
+  display: flex;
+  width: 55%;
+}
+
+.header__search-bar input {
+  width: 100%;
+  flex: 1;
+  border-radius: 0.75rem;
+  border: 2px solid lightgray;
+  padding: 0.25rem 0.5rem;
+}
+
+.header__search-bar input:focus-visible {
+  outline: none;
+}

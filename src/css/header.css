@@ -15,19 +15,25 @@ header {
 .header__search-bar {
   display: flex;
   width: 55%;
+  border-radius: 0.75rem;
+  border: 2px solid lightgray;
+  overflow: hidden;
 }
 
 .header__search-bar input {
   width: 100%;
   flex: 1;
-  border-radius: 0.75rem;
-  border: 2px solid lightgray;
   padding: 0.25rem 0.5rem;
   color: var(--font-color);
+  border: 0;
 }
 
 .header__search-bar input:focus-visible {
   outline: none;
+}
+
+.header__button {
+  width: 2.5rem;
 }
 
 @media screen and (min-width: 1024px) {
@@ -37,10 +43,10 @@ header {
 
   .header__search-bar input {
     padding: 0.5rem 0.5rem;
-    border-radius: 1rem;
   }
 
   .header__search-bar {
     width: 75%;
+    border-radius: 1rem;
   }
 }

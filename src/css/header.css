@@ -1,7 +1,9 @@
+header {
+  box-shadow: var(--shadow);
+}
 .header {
   display: flex;
   padding: 0.5rem;
-  box-shadow: var(--shadow);
   justify-content: space-between;
   align-items: center;
 }
@@ -26,4 +28,19 @@
 
 .header__search-bar input:focus-visible {
   outline: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .header__title h2 {
+    font-size: 1.25rem;
+  }
+
+  .header__search-bar input {
+    padding: 0.5rem 0.5rem;
+    border-radius: 1rem;
+  }
+
+  .header__search-bar {
+    width: 75%;
+  }
 }

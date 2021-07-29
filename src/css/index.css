@@ -12,5 +12,11 @@ h4 {
   margin: 0;
 }
 
+.container {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @import './header.css';
 @import './variables.css';

@@ -30,9 +30,9 @@ const productsToString = (data) => {
   )
 }
 
-export const printCardList = (title, id, data) => {
-  const filteredCards = data.filter((item) => item.category === id)
-  const cards = productsToString(filteredCards)
+export const printCardList = (title, id, products) => {
+  const filteredProducts = products.filter((item) => item.category === id)
+  const cards = productsToString(filteredProducts)
 
   return `
       <div class="card-list">

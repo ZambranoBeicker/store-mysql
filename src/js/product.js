@@ -9,7 +9,7 @@ export const products = {
 
     this.subscriber = Object.freeze(subscriber)
   },
-  paintContent(data) {
+  paintContent(products) {
     if (!Boolean(this.subscriber)) {
       throw new Error('Subscriber is invalid')
     }
@@ -32,7 +32,7 @@ export const products = {
         this.subscriber.innerHTML += printCardList(
           category.name,
           category.id,
-          data
+          products
         )
       })
     })

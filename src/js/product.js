@@ -1,4 +1,4 @@
-import { renderProductCard } from './helpers'
+import { printCardList } from './helpers'
 
 export const products = {
   subscriber: null,
@@ -14,13 +14,27 @@ export const products = {
       throw new Error('Subscriber is invalid')
     }
 
-    //TODO: Here you need to render cards grouped by category
-    data.forEach((element) => {
-      this.subscriber.innerHTML += renderProductCard(
-        element.name,
-        element.price,
-        element.url_image
-      )
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(
+          'http://mysql-store-app.herokuapp.com/category'
+        )
+        const parsedResponse = await response.json()
+
+        return parsedResponse
+      } catch (e) {
+        throw e
+      }
+    }
+
+    fetchCategories().then((res) => {
+      res.data.forEach((category) => {
+        this.subscriber.innerHTML += printCardList(
+          category.name,
+          category.id,
+          data
+        )
+      })
     })
   },
 }

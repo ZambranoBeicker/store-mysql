@@ -31,3 +31,18 @@
   margin-top: 2rem;
   border-top: 2px solid var(--bg-color);
 }
+
+@media screen and (min-width: 1024px) {
+  .card-list {
+    padding: 0;
+  }
+
+  .card-list__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    margin-left: 0;
+  }
+}

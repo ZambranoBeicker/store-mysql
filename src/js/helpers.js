@@ -38,7 +38,9 @@ export const printCardList = (title, id, products) => {
       <div class="card-list">
         <div class="card-list__title">
           <h2>${title}</h2>
-              ${cards}
+        </div>
+        <div class="card-list__wrapper">
+          ${cards}
         </div>
       </div>
 

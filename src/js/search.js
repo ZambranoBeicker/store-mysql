@@ -1,6 +1,5 @@
 import { checkSubscriber, fetchData, initSubscriber } from './helpers'
 
-//TODO: Trigger the same event for the searchButton next to thi input
 export default {
   subscriber: null,
   searchButton: null,

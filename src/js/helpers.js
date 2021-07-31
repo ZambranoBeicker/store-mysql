@@ -25,6 +25,9 @@ const printProductCard = (name, price, image) =>
 `
 
 const productsToString = (data) => {
+  if (data.length === 1) {
+    return printProductCard(data[0].name, data[0].price, data[0].url_image)
+  }
   return data.reduce((previous, current) =>
     typeof previous === 'object'
       ? printProductCard(previous.name, previous.price, previous.url_image) +

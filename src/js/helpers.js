@@ -43,6 +43,45 @@ export const printCardList = (title, id, products) => {
           ${cards}
         </div>
       </div>
+  `
+}
+
+export const initSubscriber = (currentSubscriber, newSubscriber) => {
+  if (currentSubscriber !== null) {
+    throw new Error('Subscriber cannot be defined again')
+  }
+
+  return Object.freeze(newSubscriber)
+}
+
+export const checkSubscriber = (subscriber) => {
+  if (!Boolean(subscriber)) {
+    throw new Error('Subscriber is invalid')
+  }
+}
+
+export const fetchData = async (url) => {
+  try {
+    const response = await fetch(url)
+    const parsedResponse = await response.json()
+
+    return parsedResponse
+  } catch (e) {
+    throw e
+  }
+}
+
+export const printResults = (data) => {
+  const results = productsToString(data)
+  return `
+      <div class="card-list">
+        <div class="card-list__title">
+          <h2>Results: </h2>
+        </div>
+        <div class="card-list__wrapper">
+          ${results}
+        </div>
+      </div>
 
   `
 }

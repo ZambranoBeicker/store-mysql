@@ -1,16 +1,19 @@
 import app from './js/app'
 import { products } from './js/product'
-//TODO: Make a 'search bar' module with its logic
+import search from './js/search'
 
 import './css/index.css'
 
 const mainContentTarget = document.getElementById('main-content')
-//TODO: Manage the search bar target
+const searchBarTarget = document.getElementById('search-bar')
 
 products.initialize(mainContentTarget)
+search.initialize(searchBarTarget)
 
-app.fetchInitialData((res) => {
-  products.paintContent(res.data)
+search.addEventListener((results) => {
+  products.showResults(results)
 })
 
-//TODO: Create the search feature
+app.fetchInitialData((res) => {
+  products.firstPaint(res.data)
+})

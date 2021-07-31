@@ -6,10 +6,14 @@ import './css/index.css'
 
 const mainContentTarget = document.getElementById('main-content')
 const searchBarTarget = document.getElementById('search-bar')
+const searchButtonTarget = document.getElementById('search-button')
 
 products.initialize(mainContentTarget)
-search.initialize(searchBarTarget)
+search.initialize(searchBarTarget, searchButtonTarget)
 
+search.addEventListener((results) => {
+  products.showResults(results)
+})
 search.addEventListener((results) => {
   products.showResults(results)
 })

@@ -11,12 +11,14 @@ const searchButtonTarget = document.getElementById('search-button')
 products.initialize(mainContentTarget)
 search.initialize(searchBarTarget, searchButtonTarget)
 
-search.addEventListener((results) => {
-  products.showResults(results)
-})
-search.addEventListener((results) => {
-  products.showResults(results)
-})
+search.addEventListener(
+  (results) => {
+    products.showResults(results)
+  },
+  () => {
+    products.showLoadingFeedback()
+  }
+)
 
 app.fetchInitialData((res) => {
   products.firstPaint(res.data)

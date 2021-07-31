@@ -92,3 +92,11 @@ export const printResults = (data) => {
 
   `
 }
+
+export const printLoadingFeedback = () => {
+  return `
+      <div style="margin:0 auto;">
+        <p>Loading...</p>
+      </div>
+  `
+}

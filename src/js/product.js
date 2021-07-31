@@ -1,4 +1,5 @@
 import {
+  printLoadingFeedback,
   printResults,
   fetchData,
   checkSubscriber,
@@ -17,8 +18,9 @@ export const products = {
   },
   firstPaint(products) {
     checkSubscriber(this.subscriber)
-
+    this.showLoadingFeedback()
     fetchData('https://mysql-store-app.herokuapp.com/category').then((res) => {
+      this.subscriber.innerHTML = ''
       res.data.forEach((category) => {
         this.subscriber.innerHTML += printCardList(
           category.name,
@@ -27,5 +29,10 @@ export const products = {
         )
       })
     })
+  },
+
+  showLoadingFeedback() {
+    checkSubscriber(this.subscriber)
+    this.subscriber.innerHTML = printLoadingFeedback()
   },
 }

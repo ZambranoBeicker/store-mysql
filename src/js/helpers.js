@@ -1,3 +1,5 @@
+import CartIcon from '../assets/-shopping-cart_90604.svg'
+
 const printProductCard = (name, price, image) =>
   `
     <div class="card">
@@ -14,7 +16,9 @@ const printProductCard = (name, price, image) =>
 
       <div class="card__buy">
       <span>$${price}</span>
-        <button>I</button>
+        <button>
+          <img src=${CartIcon} alt="Cart icon" />
+        </button>
       </div>
     </div>
 

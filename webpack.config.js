@@ -20,6 +20,15 @@ module.exports = {
           { loader: 'postcss-loader' },
         ],
       },
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+        options: {},
+      },
+      {
+        test: /\.(jpg|png|svg)$/,
+        type: 'asset/resource',
+      },
     ],
   },
   plugins: [

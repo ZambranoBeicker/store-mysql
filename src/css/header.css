@@ -34,6 +34,7 @@ header {
 
 .header__button {
   width: 2.5rem;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 1024px) {

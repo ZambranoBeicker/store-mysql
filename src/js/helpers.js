@@ -61,7 +61,7 @@ export const printCardList = (title, id, products) => {
 }
 
 export const initSubscriber = (currentSubscriber, newSubscriber) => {
-  if (currentSubscriber !== null) {
+  if (!!currentSubscriber) {
     throw new Error('Subscriber cannot be defined again')
   }
 

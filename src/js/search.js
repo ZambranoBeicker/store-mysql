@@ -20,11 +20,6 @@ export default {
       if (event.keyCode === 13) {
         beforeFetch()
         fetchData(url + value).then((products) => {
-          console.log(
-            '%cThis is what happens: ',
-            'font-size:20px;background:lightblue;color:black;'
-          )
-          console.log(products)
           showResults(products.data)
         })
       }

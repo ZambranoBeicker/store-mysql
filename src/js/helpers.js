@@ -24,6 +24,13 @@ const printProductCard = (name, price, image) =>
 
 `
 
+const printNotFound = () => {
+  return `
+      <div style="margin:2rem auto;">
+        <h2>Error 404: Not Found</h2>
+      </div>`
+}
+
 const productsToString = (data) => {
   if (data.length === 1) {
     return printProductCard(data[0].name, data[0].price, data[0].url_image)
@@ -54,7 +61,7 @@ export const printCardList = (title, id, products) => {
 }
 
 export const initSubscriber = (currentSubscriber, newSubscriber) => {
-  if (currentSubscriber !== null) {
+  if (!!currentSubscriber) {
     throw new Error('Subscriber cannot be defined again')
   }
 
@@ -79,6 +86,9 @@ export const fetchData = async (url) => {
 }
 
 export const printResults = (data) => {
+  if (!Boolean(data) || data.length < 1) {
+    return printNotFound()
+  }
   const results = productsToString(data)
   return `
       <div class="card-list">

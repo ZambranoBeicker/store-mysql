@@ -1,0 +1,3 @@
+[submodule "mysql-store-api"]
+	path = mysql-store-api
+	url = https://github.com/ZambranoBeicker/mysql-store-api

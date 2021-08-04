@@ -1,11 +1,11 @@
 import CartIcon from '../assets/-shopping-cart_90604.svg'
+import Default from '../assets/no-image.png'
 
-const printProductCard = (name, price, image) =>
-  `
-    <div class="card">
+const printProductCard = (name, price, image) => `
+<div class="card">
       <div class="card__image">
         <img
-          src=${image}
+          src=${!!image ? image : Default}
           alt="Placeholder image"
         />
       </div>

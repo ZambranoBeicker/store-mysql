@@ -1,102 +1,66 @@
-# 📦 webpack Boilerplate
+# With MySQL Store
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+---
 
-Sensible webpack 5 boilerplate using Babel, PostCSS and Sass with a hot dev server and an optimized production build.
+A Single Page Application built in Vanilla JS (JavaScript) and plain CSS without any framework or library. This is just a simple
+page that lets you see ordered data by categories and you can use the search bar to browse items that contains the words you type.
 
-## Installation
+The next lines explain the process i used to build the app.
 
-Clone this repo and npm install.
+## Webpack
 
-```bash
-npm i
+Webpack is a JS module bundler that lets you improve the performance of your web app and that's why is so important to use it for
+a frontend web app and this is i started with. Just a simple webpack configuration that creates the final bundle and optimize the
+files. You can know more about it on `webpack.config.js`
+
+## File structure and code organization
+
+### JS
+
+```
+- src/index.js
+- src/js/app.js
+- src/js/product.js
+- src/js/search.js
+- src/js/helpers.js
 ```
 
-## Usage
+I decided to use an object literal-like design pattern for the JS code because I don't want everyone can access to certain
+features that are supposed to be unique to those parts of the app. For example, every function or feature i build for the main
+content section needs to be only used for that part. That's why you will see files like `product` or `search`. Every file
+contains only the needed features for its related part in the app.
 
-### Development server
+Since this is an small exercise i don't want to spend a lot of time arranging the files in an scalable structure. I just want
+to work the easiest way i could with every file so i just throw all every JS file into a JS folder and the same for the CSS.
 
-```bash
-npm start
+Going back to the design patterns i used, i wanted to use some concepts from SOLID and Singleton patterns. Every "subscriber" will
+be notify about the events and then do the necesary actions. For example, the app will fetch the data at the first load, when that
+happens the "Main Content Subscriber" will show all the data. But there's only one main content so in `src/product.js` i made it
+throw an exception if you try to add more than one subscriber and the same applies for the search bar
+
+### CSS
+
+```
+- src/css/index.css
+- src/css/card.css
+- src/css/header.css
+- src/css/variables.css
 ```
 
-You can view the development server at `localhost:8080`.
+The CSS structure is not so difficult to understand what i did. I just wanted to have all the styles separated for each section, one file per section. And, as you can see in the `src/index.js`, the `src/index.css` file also import every file into it and the
+global styles are put in that file.
 
-### Production build
+There's only one break point for desktop resolutions i wanted to use because, again, this is a simple exercise. I like to work
+using the _mobile first_ approach so you will see that every media query is only for desktop resolutions.
 
-```bash
-npm run build
-```
+## Deploy
 
-> Note: Install [http-server](https://www.npmjs.com/package/http-server) globally to deploy a simple server.
+### Frontend
 
-```bash
-npm i -g http-server
-```
+To deploy the web page i used netlify because of its ease. Only press one or two buttons and everything will be available whitin
+one or two minutes.
 
-You can view the deploy by creating a server in `dist`.
+### Backend
 
-```bash
-cd dist && http-server
-```
-
-## Features
-
-- [webpack](https://webpack.js.org/)
-- [Babel](https://babeljs.io/)
-- [Sass](https://sass-lang.com/)
-- [PostCSS](https://postcss.org/)
-
-## Dependencies
-
-### webpack
-
-- [`webpack`](https://github.com/webpack/webpack) - Module and asset bundler.
-- [`webpack-cli`](https://github.com/webpack/webpack-cli) - Command line interface for webpack
-- [`webpack-dev-server`](https://github.com/webpack/webpack-dev-server) - Development server for webpack
-- [`webpack-merge`](https://github.com/survivejs/webpack-merge) - Simplify development/production configuration
-- [`cross-env`](https://github.com/kentcdodds/cross-env) - Cross platform configuration
-
-### Babel
-
-- [`@babel/core`](https://www.npmjs.com/package/@babel/core) - Transpile ES6+ to backwards compatible JavaScript
-- [`@babel/plugin-proposal-class-properties`](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties) - Use properties directly on a class (an example Babel config)
-- [`@babel/preset-env`](https://babeljs.io/docs/en/babel-preset-env) - Smart defaults for Babel
-
-### Loaders
-
-- [`babel-loader`](https://webpack.js.org/loaders/babel-loader/) - Transpile files with Babel and webpack
-- [`sass-loader`](https://webpack.js.org/loaders/sass-loader/) - Load SCSS and compile to CSS
-  - [`node-sass`](https://github.com/sass/node-sass) - Node Sass
-- [`postcss-loader`](https://webpack.js.org/loaders/postcss-loader/) - Process CSS with PostCSS
-  - [`postcss-preset-env`](https://www.npmjs.com/package/postcss-preset-env) - Sensible defaults for PostCSS
-- [`css-loader`](https://webpack.js.org/loaders/css-loader/) - Resolve CSS imports
-- [`style-loader`](https://webpack.js.org/loaders/style-loader/) - Inject CSS into the DOM
-
-### Plugins
-
-- [`clean-webpack-plugin`](https://github.com/johnagan/clean-webpack-plugin) - Remove/clean build folders
-- [`copy-webpack-plugin`](https://github.com/webpack-contrib/copy-webpack-plugin) - Copy files to build directory
-- [`html-webpack-plugin`](https://github.com/jantimon/html-webpack-plugin) - Generate HTML files from template
-- [`mini-css-extract-plugin`](https://github.com/webpack-contrib/mini-css-extract-plugin) - Extract CSS into separate files
-- [`css-minimizer-webpack-plugin`](https://webpack.js.org/plugins/css-minimizer-webpack-plugin/) - Optimize and minimize CSS assets
-
-### Linters
-
-- [`eslint`](https://github.com/eslint/eslint) - Enforce styleguide across application
-- [`eslint-config-airbnb-base`](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base) - Base styleguide to enforce rules
-- [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) - Implment prettier rules
-- [`eslint-plugin-import`](https://github.com/benmosher/eslint-plugin-import) - Implment import rules
-- [`eslint-plugin-prettier`](https://github.com/prettier/eslint-plugin-prettier) - Dependency for prettier usage with ESLint
-- [`eslint-import-resolver-webpack`](https://github.com/benmosher/eslint-plugin-import/tree/master/resolvers/webpack) - Throw exceptions for import/export in webpack
-- [`eslint-webpack-plugin`](https://github.com/webpack-contrib/eslint-webpack-plugin) - ESLint configuration for webpack
-- [`prettier`](https://github.com/prettier/prettier) - Dependency for `prettier-webpack-plugin` plugin
-- [`prettier-webpack-plugin`](https://github.com/hawkins/prettier-webpack-plugin) - Prettier configuration for webpack
-
-## Author
-
-- [Tania Rascia](https://www.taniarascia.com)
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
+The backned was quite more difficult since this is my first time deploying an API. I'm using heroku to serve my API with pm2
+to guarantee that it will be available all the time restarting it if there's some problem.

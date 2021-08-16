@@ -110,3 +110,13 @@ export const printLoadingFeedback = () => {
       </div>
   `
 }
+
+export const printCategorySuggestions = (categories) => {
+  let suggestions = '<button>All</button>'
+
+  categories.forEach((category) => {
+    suggestions += `<button>${category.name}</button>`
+  })
+
+  return suggestions
+}

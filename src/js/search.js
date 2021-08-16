@@ -1,4 +1,9 @@
-import { checkSubscriber, fetchData, initSubscriber } from './helpers'
+import {
+  checkSubscriber,
+  fetchData,
+  initSubscriber,
+  printCategorySuggestions,
+} from './helpers'
 
 export default {
   subscriber: null,
@@ -9,18 +14,18 @@ export default {
     this.subscriber = initSubscriber(this.subscriber, subscriber)
     this.searchButton = initSubscriber(this.searchButton, button)
     this.searchSuggestions = initSubscriber(this.searchSuggestions, suggestions)
-
-    console.log('this is my suggestions: ', this.searchSuggestions)
-    console.log('this is my subscriber: ', this.subscriber)
   },
 
   addEventListener(showResults, beforeFetch) {
     checkSubscriber(this.subscriber)
-    const url = 'https://mysql-store-app.herokuapp.com/product?search='
+    const url = 'https://mysql-store-app.herokuapp.com/'
 
     const switchSuggstionsVisibility = () => {
       if (this.searchSuggestions.classList.contains('display-none')) {
         this.searchSuggestions.classList.remove('display-none')
+        fetchData(url + 'category').then((res) => {
+          this.searchSuggestions.innerHTML = printCategorySuggestions(res.data)
+        })
       } else {
         this.searchSuggestions.classList.add('display-none')
       }
@@ -42,9 +47,11 @@ export default {
     })
     this.searchButton.addEventListener('click', () => {
       beforeFetch()
-      fetchData(url + this.subscriber.value).then((products) => {
-        showResults(products.data)
-      })
+      fetchData(url + 'product?search=' + this.subscriber.value).then(
+        (products) => {
+          showResults(products.data)
+        }
+      )
     })
   },
 }

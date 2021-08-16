@@ -7,9 +7,10 @@ import './css/index.css'
 const mainContentTarget = document.getElementById('main-content')
 const searchBarTarget = document.getElementById('search-bar')
 const searchButtonTarget = document.getElementById('search-button')
+const searchSuggestionsTarget = document.getElementById('search-suggestions')
 
 products.initialize(mainContentTarget)
-search.initialize(searchBarTarget, searchButtonTarget)
+search.initialize(searchBarTarget, searchButtonTarget, searchSuggestionsTarget)
 
 search.addEventListener(
   (results) => {

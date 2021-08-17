@@ -121,6 +121,10 @@ export const printCategorySuggestions = (categories) => {
   return suggestions
 }
 
-//export const addFetchCategoryEvent = (element) => {
-
-//}
+export const addEventToChildren = (children, data, event) => {
+  children.forEach((child) => {
+    child.addEventListener('click', () => {
+      event(child, () => data.find((item) => item.name === child.innerText))
+    })
+  })
+}

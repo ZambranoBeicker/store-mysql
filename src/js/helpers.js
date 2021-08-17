@@ -124,7 +124,12 @@ export const printCategorySuggestions = (categories) => {
 export const addEventToChildren = (children, data, event) => {
   children.forEach((child) => {
     child.addEventListener('click', () => {
-      event(child, () => data.find((item) => item.name === child.innerText))
+      event(child, () => {
+        if (child.innerText !== 'All') {
+          return data.find((item) => item.name === child.innerText).id
+        }
+        return 'All'
+      })
     })
   })
 }

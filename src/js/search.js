@@ -21,8 +21,6 @@ export default {
   addEventListener(showResults, beforeFetch) {
     checkSubscriber(this.subscriber)
 
-    //this.closeSuggestionsOnType(this.subscriber)
-
     this.subscriber.addEventListener(
       'focus',
       () => {
@@ -36,13 +34,15 @@ export default {
             res.data,
             (suggestion, getId) => {
               this.closeSuggestionsOrShowResults(suggestion, 'SPAN', () => {
-                const { id: categoryId } = getId()
+                const categoryId = getId()
+                const endpoint =
+                  categoryId === 'All'
+                    ? 'product'
+                    : 'product?category=' + categoryId
                 beforeFetch()
-                fetchData(this.url + 'product?category=' + categoryId).then(
-                  (res) => {
-                    showResults(res.data)
-                  }
-                )
+                fetchData(this.url + endpoint).then((res) => {
+                  showResults(res.data)
+                })
               })
             }
           )

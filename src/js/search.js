@@ -21,6 +21,8 @@ export default {
   addEventListener(showResults, beforeFetch) {
     checkSubscriber(this.subscriber)
 
+    //this.closeSuggestionsOnType(this.subscriber)
+
     this.subscriber.addEventListener(
       'focus',
       () => {
@@ -54,6 +56,7 @@ export default {
       const value = event.target.value
 
       if (event.keyCode === 13) {
+        this.closeSuggestions()
         beforeFetch()
         fetchData(this.url + 'product?search=' + value).then((products) => {
           showResults(products.data)
@@ -61,6 +64,7 @@ export default {
       }
     })
     this.searchButton.addEventListener('click', () => {
+      this.closeSuggestions()
       beforeFetch()
       fetchData(this.url + 'product?search=' + this.subscriber.value).then(
         (products) => {
@@ -75,5 +79,9 @@ export default {
       return
     }
     show()
+  },
+  closeSuggestions() {
+    this.searchSuggestions.classList.add('display-none')
+    this.subscriber.blur()
   },
 }

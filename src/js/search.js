@@ -21,18 +21,34 @@ export default {
     const url = 'https://mysql-store-app.herokuapp.com/'
 
     const switchSuggstionsVisibility = () => {
-      if (this.searchSuggestions.classList.contains('display-none')) {
-        this.searchSuggestions.classList.remove('display-none')
-        fetchData(url + 'category').then((res) => {
-          this.searchSuggestions.innerHTML = printCategorySuggestions(res.data)
+      this.searchSuggestions.classList.remove('display-none')
+      fetchData(url + 'category').then((res) => {
+        this.searchSuggestions.innerHTML = printCategorySuggestions(res.data)
+        this.searchSuggestions.style.height = 'initial'
+        Array.from(this.searchSuggestions.children).forEach((suggestion) => {
+          suggestion.addEventListener(
+            'click',
+            (event) => {
+              if (suggestion.nodeName === 'SPAN') {
+                this.searchSuggestions.classList.add('display-none')
+                return
+              }
+
+              const { id } = res.data.find(
+                (item) => item.name === suggestion.innerText
+              )
+              console.log('this is the ID: ', id)
+              fetchData(url + 'product?category=' + id).then((res) => {
+                showResults(res.data)
+              })
+            },
+            true
+          )
         })
-      } else {
-        this.searchSuggestions.classList.add('display-none')
-      }
+      })
     }
 
     this.subscriber.addEventListener('focus', switchSuggstionsVisibility, true)
-    this.subscriber.addEventListener('blur', switchSuggstionsVisibility, true)
 
     this.subscriber.addEventListener('keyup', (event) => {
       event.preventDefault()

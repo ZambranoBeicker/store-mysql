@@ -52,6 +52,22 @@ header {
   left: 0;
 }
 
+.suggestions > span {
+  content: 'X';
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 1.5rem;
+  display: fex;
+  border-radius: 50%;
+  background: #d3d3d3ad;
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .suggestions > button {
   cursor: pointer;
   padding: 0.5rem 1rem;

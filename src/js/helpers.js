@@ -112,7 +112,7 @@ export const printLoadingFeedback = () => {
 }
 
 export const printCategorySuggestions = (categories) => {
-  let suggestions = '<button>All</button>'
+  let suggestions = '<span>X</span><button>All</button>'
 
   categories.forEach((category) => {
     suggestions += `<button>${category.name}</button>`
@@ -120,3 +120,7 @@ export const printCategorySuggestions = (categories) => {
 
   return suggestions
 }
+
+//export const addFetchCategoryEvent = (element) => {
+
+//}
